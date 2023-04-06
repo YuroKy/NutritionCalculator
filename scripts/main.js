@@ -17,14 +17,19 @@ var tableHeader = document.createElement("tr");
 table.appendChild(tableHeader);
 
 tableHeader.appendChild(createTableHeader("Назва продукту"));
-tableHeader.appendChild(createTableHeader("Порція (гр)"));
+tableHeader.appendChild(createTableHeader("Порція"));
+tableHeader.appendChild(createTableHeader("В сумі на день"));
+tableHeader.appendChild(createTableHeader("Група продукту"));
+
 
 for(let ingredientKey in ingredients){
     let ingredient = ingredients[ingredientKey];
 
     var row = document.createElement("tr");
     row.appendChild(createTableData(ingredient.name));
-    row.appendChild(createTableData(ingredient.portion));
+    row.appendChild(createTableData(`${ingredient.portion}${ingredient.measurementMethod}`));
+    row.appendChild(createTableData(`${ingredient.capacity}${ingredient.measurementMethod}`));
+    row.appendChild(createTableData(ingredient.group));
 
     table.appendChild(row);
 }
